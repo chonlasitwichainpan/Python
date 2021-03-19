@@ -48,7 +48,9 @@ def numinputupdate():
     #print(result[1])
 
     search = Button(updatewindow, text="Search", command = ifupdate)
-    search.pack(anchor='center')
+    search.place(x = 100, y = 80)
+    cancel = Button(updatewindow, text="Cancel", command = restart_program)
+    cancel.place(x = 200, y = 80)
 
     #a = numinputt.get()
     #a = [a,]
@@ -431,15 +433,6 @@ def addpackage() :
     packagewindow.geometry("500x200")
     packagewindow.resizable(0, 0)
 
-    #def shownumtrack():
-    #    number = tk.Label(packagewindow, text="Your tracking number is :")
-    #    number.config(font=("", 14))
-    #    number.place(x = 10, y = 185)
-    #
-    #    packagenumber = tk.Label(packagewindow, text=str(etrack))
-    #    packagenumber.config(font=("", 14))
-    #    packagenumber.place(x = 250, y = 185)
-
     def getmessage():
         global typ,sendto
         send = sendernameinput.get()
@@ -541,31 +534,8 @@ def addpackage() :
                 c.execute('INSERT INTO shippingcheck (type,Province,tracking,delivername,recivename,price,weight) values (?,?,?,?,?,?,?)',('NOR','SRU',str(rtrack),send,recip,totalquick,weight))
                 conn.commit()
                 
-        #conn.close()
-
-        '''sendernametitle.destroy()
-        sendernameinput.destroy()
-        recipnametitle.destroy()
-        recipnameinput.destroy()
-        addresstitle.destroy()
-        addressinput.destroy()
-        typetitle.destroy()
-        typepick.destroy()
-        sendtotitle.destroy()
-        sendtopick.destroy()
-        weighttitle.destroy()
-        weightinput.destroy()
-        enterbutton.destroy()
-
-        infomationdone = tk.Label(master = packagewindow, text="Information has entered the system")
-        infomationdone.config(font=("Courier", 18))
-        infomationdone.pack(anchor='center')
-
-        donebutton = Button(packagewindow, text="Done", command = packagewindow.destroy)
-        donebutton.pack(anchor='center')'''
         packagewindow.destroy()
         receipt()
-        #shownumtrack()
 
     sendernametitle = tk.Label(master = packagewindow, text="Sender name")
     sendernametitle.place(x = 10, y = 10)
@@ -598,14 +568,10 @@ def addpackage() :
     #weightinput.bind('<Return>',getmessage)
 
     confirmbutton = Button(packagewindow, text = "Confirm", height = 5, width = 10, command = getmessage)
-    confirmbutton.place(x = 350, y = 80)
+    confirmbutton.place(x = 300, y = 80)
 
-    '''send = sendernameinput.get()
-    recip = recipnameinput.get()
-    address = addressinput.get()
-    sendto = sendtopick.get()
-    typ = typepick.get()
-    weight = float(weightinput.get())'''
+    backbutton = Button(packagewindow, text = "Back", height = 5, width = 10, command = restart_program)
+    backbutton.place(x = 400, y = 80)
 
     packagewindow.mainloop()
     
@@ -721,8 +687,14 @@ def receipt():
     packagenumber.config(font=("", 14))
     packagenumber.pack(anchor='center')
 
+    thx = tk.Label(receipt, text="Thank you for using the service\nWe will do our best\nand take care of your packages.")
+    thx.config(font=("", 10))
+    thx.pack()
+
     closebutton = Button(receipt, text="Close", command = restart_program)
     closebutton.pack(anchor='center')
+
+    
 
     receipt.mainloop()
 
@@ -750,7 +722,9 @@ def numinputcheck():
     numinputt2.pack(anchor='center')
 
     search2 = Button(checkwindow, text="Search", command = ifcheck)
-    search2.pack(anchor='center')
+    search2.place(x = 100, y = 80)
+    cancel2 = Button(checkwindow, text="Cancel", command = restart_program)
+    cancel2.place(x = 200, y = 80)
 
 def ifcheck():
     global b, strack
